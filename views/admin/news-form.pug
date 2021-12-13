@@ -1,0 +1,12 @@
+extends ../layout
+block content
+  h1= title
+  form(method='post')
+    p
+        label Tytuł
+        input(type='text' name='title')
+    p
+        label Opis
+        textarea(name='description')
+    p
+        input(type='submit' value='Zapis')
