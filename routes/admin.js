@@ -17,14 +17,11 @@ router.all('*', (req, res, next) => {
 
 /* GET home page. */
 router.get('/', (req, res) => {
-  // const newsData = new News({
-  //   title: 'tytuł testowy',
-  //   description: 'opis'
-  // })
-  // newsData.save((err) => {
-  //   console.log(err);
-  // })
-  res.render('admin/index', { title: 'Admin' });
+  News.find({}, (err, data) => {
+     console.log(data);
+     
+     res.render('admin/index', { title: 'Admin', data });
+   });
 });
 
 
@@ -37,10 +34,19 @@ router.post('/news/add', (req, res) => {
 
   
   newsData.save((err) => {
-    console.log(err);
+    if(err){
+      res.render('admin/news-form', { title: 'Dodaj news', errors , body});
+      return;
+    }
+    res.redirect('/admin');
   });
+});
 
-  res.render('admin/news-form', { title: 'Dodaj news', errors });
+
+router.get('/news/delete/:id', (req, res) => {
+  News.findByIdAndDelete(req.params.id, (error)=>{
+    res.redirect('/admin')
+  })
 });
 
 module.exports = router;
