@@ -27,9 +27,6 @@ router.get('/', (req, res) => {
   res.render('admin/index', { title: 'Admin' });
 });
 
-router.get('/news/add', (req, res) => {
-  res.render('admin/news-form', { title: 'Dodaj news' });
-});
 
 router.post('/news/add', (req, res) => {
   const body = req.body; 
