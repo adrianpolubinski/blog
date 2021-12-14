@@ -1,8 +1,6 @@
 const express = require('express');
 const News = require('../models/news');
-
 const router = express.Router();
-
 
 
 router.all('*', (req, res, next) => {
@@ -47,6 +45,13 @@ router.post('/news/add', (req, res) => {
 
 
 router.get('/news/delete/:id', (req, res) => {
+  News.findByIdAndDelete(req.params.id, (error)=>{
+    res.redirect('/admin')
+  })
+});
+
+//DELETE
+router.delete('/news/delete/:id', (req, res) => {
   News.findByIdAndDelete(req.params.id, (error)=>{
     res.redirect('/admin')
   })

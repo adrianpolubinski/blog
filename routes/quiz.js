@@ -28,6 +28,20 @@ router.post('/', (req, res) => {
   
 });
 
+//PUT
+router.put('/', (req, res) => {
+  const id = req.body.quiz;
+
+  Quiz.findOne({ _id: id }, (err, data) => {
+    data.vote = data.vote + 1;
+    data.save((err) => {
+      req.session.vote = 1;
+      res.send('PUT dla ID: '+id)
+    });
+
+  })
+
+});
 
 
 module.exports = router;

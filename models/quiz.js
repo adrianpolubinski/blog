@@ -6,4 +6,5 @@ var quizSchema = new mongoose.Schema({
     vote: { type: Number, required: true, default: 0 }
 });
 
+
 module.exports = mongoose.model('Quiz', quizSchema);
